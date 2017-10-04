@@ -41,8 +41,11 @@ function fillInWordWithLetter(char) {
 		if ( answer.charAt(k) == char) {
 			displayedAnswer[k] = char;
 		}
+		document.querySelector('#answer').innerHTML = displayedAnswer[k];
 	}
+	
 }
+fillInWordWithLetter(char);
 
 
 var updateGuessesLeft = function() {
