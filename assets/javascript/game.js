@@ -5,6 +5,7 @@ var computerChoices = ["warriors","cavaliers","lakers","spurs","knicks","celtics
 "timberwolves","nuggets","grizzlies","hornets","magic","jazz"];
 var letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u',
 'v','w','x','y','z','1','2','3','4','5','6','7','8','9','0'];
+var useGuess = [];
 var guesses = 5;
 var wins = 0;
 var guessesLeft = 5;
@@ -19,7 +20,11 @@ var answer = computerChoices[Math.floor(Math.random() * computerChoices.length)]
 document.onkeyup = function(event) {
 	var letters = document.querySelector('#usedGuesses');
 	var userGuess = event.key;
-		letters.innerHTML = letters.innerHTML + " " + userGuess + ", ";	
+		for ( var a = 0; a < letters.length; a++) {
+			if ( userGuess == letters[a] ) {
+			letters.innerHTML = letters.innerHTML + " " + userGuess + ", ";	    
+		}
+	}
 }
 
 //Generate underscores depending on the length of the answer
@@ -36,6 +41,7 @@ generateUnderscore();
 
 //Replace the underscore with the letter
 
+var char = userGuess;
 function fillInWordWithLetter(char) {
 	for ( var k = 0; k < answer.length; k++) {
 		if ( answer.charAt(k) == char) {
@@ -43,9 +49,8 @@ function fillInWordWithLetter(char) {
 		}
 		document.querySelector('#answer').innerHTML = displayedAnswer[k];
 	}
-	
 }
-fillInWordWithLetter(char);
+
 
 
 var updateGuessesLeft = function() {
@@ -67,5 +72,3 @@ var reset = function() {
   updateGuessesSoFar();
 }
 
-updateLetterToGuess();
-updateGuessesLeft();
